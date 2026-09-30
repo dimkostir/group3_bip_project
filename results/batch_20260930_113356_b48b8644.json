@@ -1,0 +1,40 @@
+{
+  "job_id": "b48b8644",
+  "status": "done",
+  "data_dir": "/Users/dimkostir/Desktop/test_htw_infrastructure 2/data",
+  "total": 2,
+  "processed": 2,
+  "failed": 0,
+  "started_at": "2026-09-30T11:33:56",
+  "finished_at": "2026-09-30T11:34:49",
+  "error": null,
+  "results_file": "/Users/dimkostir/Desktop/test_htw_infrastructure 2/results/batch_20260930_113356_b48b8644.json",
+  "results": [
+    {
+      "file_name": "00000018.TIF",
+      "result": {
+        "file_name": "00000018.TIF",
+        "title": "-Revisionszeichnung- für die Abortsanlage der Haltestelle Reichskanzlerplatz.",
+        "location": "Berlin (Haltestelle Reichskanzlerplatz)",
+        "main_content": "Revision drawing presenting two elevation views (View A and View B) of a door assembly, including a door leaf (Tür), a top transom light (Oberlicht to be inserted later), handle hardware, and the surrounding frame set into a masonry/lining wall. Dimensional annotations are given for both views and the drawing is at a scale of 1:10. It documents the door installation for the toilet facility at the Reichskanzlerplatz stop.",
+        "category": "Structural & construction details"
+      },
+      "raw_output": "\n\n{\n  \"file_name\": \"00000018.TIF\",\n  \"title\": \"-Revisionszeichnung- für die Abortsanlage der Haltestelle Reichskanzlerplatz.\",\n  \"location\": \"Berlin (Haltestelle Reichskanzlerplatz)\",\n  \"main_content\": \"Revision drawing presenting two elevation views (View A and View B) of a door assembly, including a door leaf (Tür), a top transom light (Oberlicht to be inserted later), handle hardware, and the surrounding frame set into a masonry/lining wall. Dimensional annotations are given for both views and the drawing is at a scale of 1:10. It documents the door installation for the toilet facility at the Reichskanzlerplatz stop.\",\n  \"category\": \"Structural & construction details\"\n}",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "file_name": "A_318_005.tif",
+      "result": {
+        "file_name": "A_318_005.tif",
+        "title": "Rekonstruktion U-Bhf. „Spittelmarkt“ Nebenräume - Ausgang Spittelmarkt, TP: Sanitäre Installation, Grundriss",
+        "location": "U-Bhf. Spittelmarkt",
+        "main_content": "Floor plan showing the layout and routing of technical installations, specifically the sanitary systems (cold water, gas, and wastewater pipes) for the side rooms and exit area of the Spittelmarkt underground station reconstruction, including technical notes and a legend.",
+        "category": "Technical systems & installations"
+      },
+      "raw_output": "\n\n{\n  \"file_name\": \"A_318_005.tif\",\n  \"title\": \"Rekonstruktion U-Bhf. „Spittelmarkt“ Nebenräume - Ausgang Spittelmarkt, TP: Sanitäre Installation, Grundriss\",\n  \"location\": \"U-Bhf. Spittelmarkt\",\n  \"main_content\": \"Floor plan showing the layout and routing of technical installations, specifically the sanitary systems (cold water, gas, and wastewater pipes) for the side rooms and exit area of the Spittelmarkt underground station reconstruction, including technical notes and a legend.\",\n  \"category\": \"Technical systems & installations\"\n}",
+      "status": "ok",
+      "error": null
+    }
+  ]
+}
