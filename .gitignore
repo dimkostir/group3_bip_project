@@ -8,5 +8,6 @@ venv/
 .idea/
 .vscode/
 data/*
+data_set/*
 other/*
 *.ckpt
