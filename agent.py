@@ -5,12 +5,15 @@ import os
 import re
 from collections.abc import Iterator
 from pathlib import Path
+from dotenv import load_dotenv
 from openai import OpenAI
 from PIL import Image
 
 # ============================================================
 # SETTINGS
 # ============================================================
+
+load_dotenv(Path(__file__).parent / ".env")
 
 API_KEY = os.environ["HTW_API_KEY"]
 

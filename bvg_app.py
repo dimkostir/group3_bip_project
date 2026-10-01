@@ -1,8 +1,10 @@
 import html
+import io
 import json
 import os
 import time
 
+import pandas as pd
 import requests
 import streamlit as st
 from PIL import Image
@@ -313,6 +315,18 @@ def get_batch(job_id: str) -> dict:
     return response.json()
 
 
+def list_result_csvs() -> list[dict]:
+    response = requests.get(f"{API_URL}/results", timeout=10)
+    raise_for_api_error(response)
+    return response.json()
+
+
+def get_result_csv(name: str) -> bytes:
+    response = requests.get(f"{API_URL}/results/{name}", timeout=30)
+    raise_for_api_error(response)
+    return response.content
+
+
 # ============================================================
 # RESULT VIEW
 # ============================================================
@@ -429,6 +443,44 @@ def show_batch(job_id: str):
     if st.button("Clear batch results"):
         st.session_state.pop("batch_job_id", None)
         st.rerun()
+
+
+def show_csv_viewer():
+    """Pick a CSV from the API's results folder and show it as a searchable table."""
+    try:
+        csv_files = list_result_csvs()
+    except requests.ConnectionError:
+        st.error(f"Could not reach the API at {API_URL}. Is api.py running?")
+        return
+    except Exception as e:
+        st.error(f"Could not list the results: {e}")
+        return
+
+    if not csv_files:
+        st.info("No CSV files yet. Process the data folder to create one.")
+        return
+
+    # Newest first, so the latest batch is selected by default
+    labels = {f"{file['name']}  ({file['modified'].replace('T', ' ')})": file["name"] for file in csv_files}
+    choice = st.selectbox("Results file", list(labels), key="csv_choice")
+    name = labels[choice]
+
+    try:
+        content = get_result_csv(name)
+        # utf-8-sig matches how api.py writes the file; keep_default_na keeps empty cells as ""
+        table = pd.read_csv(io.BytesIO(content), encoding="utf-8-sig", dtype=str, keep_default_na=False)
+    except Exception as e:
+        st.error(f"Could not load {name}: {e}")
+        return
+
+    search = st.text_input("Search", placeholder="Filter rows containing this text", key="csv_search")
+    if search:
+        matches = table.apply(lambda column: column.str.contains(search, case=False, regex=False)).any(axis=1)
+        table = table[matches]
+
+    st.caption(f"{len(table)} row{'' if len(table) == 1 else 's'}")
+    st.dataframe(table, hide_index=True, width="stretch")
+    st.download_button("Download CSV", data=content, file_name=name, mime="text/csv")
 
 
 # ============================================================
@@ -553,3 +605,12 @@ else:
     # Kept in session state so the batch view survives other clicks and switching modes
     if st.session_state.get("batch_job_id"):
         show_batch(st.session_state["batch_job_id"])
+
+
+# ------------------------------------------------------------
+# Results: CSV files saved by batches
+# ------------------------------------------------------------
+
+st.markdown('<div class="bvg-step">Step 3 · Results CSV</div>', unsafe_allow_html=True)
+with st.expander("View a results CSV", expanded=False):
+    show_csv_viewer()

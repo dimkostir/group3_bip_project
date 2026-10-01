@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 from PIL import UnidentifiedImageError
 
 from agent import PROMPT, analyze_image, list_images, process_folder
@@ -163,3 +164,33 @@ def get_batch(job_id: str):
             raise HTTPException(status_code=404, detail=f"No batch job with id {job_id}")
         job = jobs[job_id]
         return {**job, "results": list(job["results"])}
+
+
+# ============================================================
+# RESULTS: CSV FILES IN THE RESULTS FOLDER
+# ============================================================
+
+@app.get("/results")
+def list_result_csvs():
+    """All CSV files in the results folder, newest first."""
+    if not RESULTS_DIR.is_dir():
+        return []
+    files = sorted(RESULTS_DIR.glob("*.csv"), key=lambda path: path.stat().st_mtime, reverse=True)
+    return [
+        {
+            "name": path.name,
+            "size": path.stat().st_size,
+            "modified": datetime.fromtimestamp(path.stat().st_mtime).isoformat(timespec="seconds"),
+        }
+        for path in files
+    ]
+
+
+@app.get("/results/{name}")
+def get_result_csv(name: str):
+    """Download one CSV file from the results folder."""
+    path = RESULTS_DIR / name
+    # Only plain file names of CSVs inside the results folder, so no other files can be read
+    if Path(name).name != name or path.suffix != ".csv" or not path.is_file():
+        raise HTTPException(status_code=404, detail=f"No CSV file named {name} in the results folder")
+    return FileResponse(path, media_type="text/csv", filename=name)

@@ -1,0 +1,41 @@
+{
+  "job_id": "56f1859b",
+  "status": "done",
+  "data_dir": "/Users/dimkostir/Desktop/bip_group3/data",
+  "total": 2,
+  "processed": 2,
+  "failed": 0,
+  "started_at": "2026-10-01T09:10:38",
+  "finished_at": "2026-10-01T09:11:33",
+  "error": null,
+  "results_file": "/Users/dimkostir/Desktop/bip_group3/results/batch_20261001_091038_56f1859b.json",
+  "csv_file": "/Users/dimkostir/Desktop/bip_group3/results/batch_20261001_091038_56f1859b.csv",
+  "results": [
+    {
+      "file_name": "00000018.TIF",
+      "result": {
+        "file_name": "plan_image.jpg",
+        "title": "Revisionzeichnung für die Absperranlage der Haltestelle Reichskanzlerplatz.",
+        "location": "Reichskanzlerplatz, Berlin",
+        "main_content": "Technical drawings showing two views (View A and View B) of a door or partition panel at a railway stop, including dimensioning, scale 1:10, and structural details like handles and panels.",
+        "category": "Stations & building plans"
+      },
+      "raw_output": "\n\n```json\n{\n  \"file_name\": \"plan_image.jpg\",\n  \"title\": \"Revisionzeichnung für die Absperranlage der Haltestelle Reichskanzlerplatz.\",\n  \"location\": \"Reichskanzlerplatz, Berlin\",\n  \"main_content\": \"Technical drawings showing two views (View A and View B) of a door or partition panel at a railway stop, including dimensioning, scale 1:10, and structural details like handles and panels.\",\n  \"category\": \"Stations & building plans\"\n}\n```",
+      "status": "ok",
+      "error": null
+    },
+    {
+      "file_name": "A_318_005.tif",
+      "result": {
+        "file_name": "Missing",
+        "title": "Rekonstruktion U-Bhf. \"Spittelmarkt\" Nebenträume - Ausgang Spittelmarkt, TP: Sanitäre Installation (Grundriß)",
+        "location": "Spittelmarkt",
+        "main_content": "Floor plan (scale 1:50) of the sanitary installation in the auxiliary rooms and the Spittelmarkt exit of the Spittelmarkt underground station. It shows the spatial layout of the rooms relative to platform tracks 1 and 2, with the exit direction marked, and the routing of the technical piping: cold water lines, natural gas (Erdgas) line, wastewater (sewage) lines, and insulated pipes, including a washing table with mirror and shelf, drain pipes NW60 with hatches, and a note to coordinate with the electrical trade before installation begins.",
+        "category": "Technical systems & installations"
+      },
+      "raw_output": "\n\n{\n  \"file_name\": \"Missing\",\n  \"title\": \"Rekonstruktion U-Bhf. \\\"Spittelmarkt\\\" Nebenträume - Ausgang Spittelmarkt, TP: Sanitäre Installation (Grundriß)\",\n  \"location\": \"Spittelmarkt\",\n  \"main_content\": \"Floor plan (scale 1:50) of the sanitary installation in the auxiliary rooms and the Spittelmarkt exit of the Spittelmarkt underground station. It shows the spatial layout of the rooms relative to platform tracks 1 and 2, with the exit direction marked, and the routing of the technical piping: cold water lines, natural gas (Erdgas) line, wastewater (sewage) lines, and insulated pipes, including a washing table with mirror and shelf, drain pipes NW60 with hatches, and a note to coordinate with the electrical trade before installation begins.\",\n  \"category\": \"Technical systems & installations\"\n}",
+      "status": "ok",
+      "error": null
+    }
+  ]
+}
